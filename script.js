@@ -10,7 +10,7 @@ Gestire l'inserimento dei numeri tramite 5 input diversi.
 
 
 // 1- visualizziamo 5 numeri casuali
-const secretNumbersElement = document.getElementById("secretNumber");
+const secretNumbersElement = document.getElementById("secretNumbers");
 const outputTextElement = document.getElementById("outputText");
 
 // input utente
@@ -29,11 +29,11 @@ const numberElements = [
     document.getElementById("number5")
 ];
 
+console.log(numberElements);
 
 const checkButtonElement = document.getElementById("checkButton");
 
-// visualizzo in console i 5 numeri
-console.log(createRandomNumbers(5));
+
 // metto in variabile da poter usare
 const randomNumbersArray = createRandomNumbers(5);
 // stampo in pagina i numeri casuali
@@ -43,7 +43,7 @@ secretNumbersElement.innerText = randomNumbersArray;
 //  2- faccio partire un timer di 10 seocndi
 //  dopo 10 secondi i numeri scompariranno
 setTimeout(function() {
-        disappearNumbers(secretNumbersElement)
+        disappearNumbers(secretNumbersElement);
         document.getElementById("inputElementsContainer").style.display = "block";
     }, 10000);
 
@@ -61,14 +61,20 @@ checkButtonElement.addEventListener("click", function () {
 // FUNZIONI PER ESERCIZIO
 // 1
 function createRandomNumbers (quantity) {
-    randomNumbers = [];
+    let randomNumbers = [];
 
     for(let i=0; i < quantity; i++) {
-        randomNumbers.push(randomNumbersBetween(1, 10));
+        randomNumbers.push(randomNumberBetween(1, 10));
     }
 
     return randomNumbers;
 }
+
+function randomNumberBetween(min, max) {
+    let random = Math.floor(Math.random() * (max - min + 1) + min);
+    return random;
+}
+
 
 // 2
 function disappearNumbers (numbersContainer) {
@@ -81,16 +87,13 @@ function checkNumbers (secretNumbers, userNumbers) {
     const rightNumbers = [];
 
     for(let i=0; i < userNumbers.length; i++) {
-        if(secretNumbers[i] == userNumbers[i]) {
+        if(secretNumbers[i] == userNumbers[i].value) {
     
             rightNumbers.push(secretNumbers[i]);
             userNumbers[i].style.backgroundColor = "green";
             console.log("trovato");
         }
-
-        console.log(rightNumbers);
     }
-
     return rightNumbers;
 }
 
