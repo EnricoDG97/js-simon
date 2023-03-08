@@ -20,25 +20,15 @@ const outputTextElement = document.getElementById("outputText");
 // const number4Element = document.getElementById("number4");
 // const number5Element = document.getElementById("number5");
 
-// array di campi di input
-const numberElements = [
-    document.getElementById("number1"),
-    document.getElementById("number2"),
-    document.getElementById("number3"),
-    document.getElementById("number4"),
-    document.getElementById("number5")
-];
-
-console.log(numberElements);
 
 const checkButtonElement = document.getElementById("checkButton");
-
 
 // metto in variabile da poter usare
 const randomNumbersArray = createRandomNumbers(5);
 // stampo in pagina i numeri casuali
 secretNumbersElement.innerText = randomNumbersArray;
 
+ 
 
 //  2- faccio partire un timer di 10 seocndi
 //  dopo 10 secondi i numeri scompariranno
@@ -49,6 +39,16 @@ setTimeout(function() {
 
 // 3- alla presisone del pulsante
 checkButtonElement.addEventListener("click", function () {
+ 
+    // array di campi di input
+    const numberElements = [
+    document.getElementById("number1"),
+    document.getElementById("number2"),
+    document.getElementById("number3"),
+    document.getElementById("number4"),
+    document.getElementById("number5")
+    ];
+
     let rightNumbersArray = checkNumbers(randomNumbersArray, numberElements)
     // 4
     endGame(rightNumbersArray, outputTextElement);
@@ -60,6 +60,11 @@ checkButtonElement.addEventListener("click", function () {
 
 // FUNZIONI PER ESERCIZIO
 // 1
+function randomNumberBetween(min, max) {
+    let random = Math.floor(Math.random() * (max - min + 1) + min);
+    return random;
+}
+
 function createRandomNumbers (quantity) {
     let randomNumbers = [];
 
@@ -69,12 +74,6 @@ function createRandomNumbers (quantity) {
 
     return randomNumbers;
 }
-
-function randomNumberBetween(min, max) {
-    let random = Math.floor(Math.random() * (max - min + 1) + min);
-    return random;
-}
-
 
 // 2
 function disappearNumbers (numbersContainer) {
